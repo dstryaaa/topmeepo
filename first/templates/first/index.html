@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta http-equiv="Content-Type"
+    content="text/html; charset="utf-8">
+    <title>Пишем посты</title>
+  </head>
+  <body>
+    <form method="POST">
+      {% csrf_token %}
+        <div >
+          <div>
+            {{ postform.title }}
+          </div>
+          <div>
+            {{ postform.content }}
+          </div>
+          <div>
+            <button type="submit">
+              add post
+            </button>
+          </div>
+        </div>
+    </form>
+
+    <h1>Посты</h1>
+    {% for i in posts %}
+    <div>
+      <h2>{{ i.title }}</h2>
+      <p>{{ i.content }}</p>
+      <p>{{ i.published|date:"d.m.Y H:i:s" }}</p>
+    </div>
+    {% endfor %}
+  </body>
+</html>
