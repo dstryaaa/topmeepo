@@ -1,1 +1,15 @@
 local.py
+.*
+*.pid
+*.pyc
+*.css.map
+!.gitkeep
+!.gitignore
+celerybeat-schedule
+files/
+
+####
+## gitlab-ci && docker
+####
+!.gitlab-ci.yml
+!.dockerignore
