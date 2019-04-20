@@ -7,7 +7,9 @@ local.py
 !.gitignore
 celerybeat-schedule
 files/
-
+pyenv/
+.idea
+db.sqlite3
 ####
 ## gitlab-ci && docker
 ####
