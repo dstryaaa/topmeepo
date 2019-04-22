@@ -39,7 +39,7 @@ class Signup(FormView):
 class Login(FormView):
     form_class = AuthenticationForm
     template_name = "first/login.html"
-    success_url = "first/"
+    success_url = "../first/"
 
     def form_valid(self, form):
         self.user = form.get_user()
