@@ -1,35 +1,87 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
-    <meta http-equiv="Content-Type"
-    content="text/html; charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset="utf-8">
     <title>Пишем посты</title>
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="{% static 'css/style.css'%}" type="text/css" media="screen">
   </head>
   <body>
-    <form method="POST">
-      {% csrf_token %}
-        <div >
-          <div>
-            {{ postform.title }}
+    <div class="row" id="inrow">
+      <div class="col s2">
+      </div>
+      <div class="col s8" id="postingform">
+        <div class="row">
+          <div class="col s2">
           </div>
-          <div>
-            {{ postform.content }}
-          </div>
-          <div>
-            <button type="submit">
-              add post
-            </button>
-          </div>
-        </div>
-    </form>
+          <div class="col s8" id="cls8">
+            <form method="POST" >
+              {% csrf_token %}
+                <div id="inputback">
+                  <div class="row">
+                    <div class="input-field col s4">
+                      {{ postform.title }}
+                      <label for="title">Enter post title</label>
+                    </div>
+                  </div>
 
-    <h1>Посты</h1>
-    {% for i in posts %}
-    <div>
-      <h2>{{ i.title }}</h2>
-      <p>{{ i.content }}</p>
-      <p>{{ i.published|date:"d.m.Y H:i:s" }}</p>
+                  <div class="row">
+                    <div class="input-field col s12">
+                      {{ postform.content }}
+                      <label for="content">Enter post content</label>
+                    </div>
+                  </div>
+
+
+                  <div id="subpost">
+                      <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+                      </button>
+                  </div>
+                </div>
+            </form>
+          </div>
+          <div class="col s2">
+          </div>
+
+        </div>
+      </div>
+      <div class="col s2">
+      </div>
+
     </div>
-    {% endfor %}
+
+    <div class="row">
+
+    <div class="col s2">
+    </div>
+
+    <div class="col s8">
+        {% for i in posts %}
+          <div class="row">
+            <div class="col s2">
+            </div>
+
+            <div class="col s8"  id="postcol">
+              <div id="post">
+                <p id="posttitle">{{ i.title }}</p>
+                <p id="postcontent">{{ i.content }}</p>
+                <p id="postdatetime">{{ i.published|date:"d.m.Y H:i:s" }}</p>
+              </div>
+            </div>
+
+            <div class="col s2">
+            </div>
+          </div>
+
+        {% endfor %}
+        </div>
+
+    <div class="col s2">
+    </div>
+
+    </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   </body>
 </html>

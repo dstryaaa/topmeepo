@@ -1,0 +1,53 @@
+body {
+  font-family: 'Playfair Display', serif;
+  background-color: #eceff1;
+}
+
+#postcol {
+    background-color: white;
+    border-radius: 4px;
+}
+
+#post {
+}
+
+#postdatetime {
+    text-align: right;
+    font-size: 12px;
+}
+
+#title {
+    text-align: left;
+    font-size: 30px;
+}
+
+#content {
+    font-size: 14px;
+    line-height: 20px;
+}
+
+#postingform {
+
+}
+
+#title{
+    background-color: white;
+}
+
+#content{
+    background-color: white;
+}
+
+#cls8 {
+    background-color: white;
+    border: 2px solid #b2ebf2;
+    border-radius: 4px;
+}
+
+#inrow {
+    padding-top: 10px;
+}
+
+#subpost {
+    padding-bottom: 5px;
+}

@@ -12,7 +12,6 @@ def index(request):
         postform = PostForm(request.POST)
         postform.save()
 
-
     postform = PostForm()
 
     posts = Post.objects.order_by('-published')
