@@ -30,8 +30,7 @@ def index(request, user_id):
 
 
 def kek(request):
-    username = request.user.username
-    return HttpResponse(username)
+    return HttpResponse('НЕПРАВИЛЬНО')
 
 
 # Общий фид
