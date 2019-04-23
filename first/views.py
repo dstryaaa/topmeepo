@@ -44,7 +44,7 @@ def feed(request):
 class Signup(FormView):
     form_class = UserCreationForm
     success_url = "../feed/"
-    template_name = "first/.html"
+    template_name = "first/signup.html"
 
     def form_valid(self, form):
         form.save()
