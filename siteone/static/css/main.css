@@ -72,3 +72,7 @@ nav li:hover{
 nav .brand-logo {
     color: black;
 }
+
+#profilemain {
+    padding-top: 10px;
+}
