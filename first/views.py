@@ -16,7 +16,8 @@ from django.contrib import admin
 
 def index(request, user_id):
     if request.user.id != user_id:
-        return HttpResponseRedirect('../login/')
+        posts = Post.objects.filter(author=user_id)
+        return render(request, 'first/feed.html', {'posts': posts})
     if request.method == 'POST':
         postform = PostForm(request.POST)
         post = postform.save(commit=False)
@@ -24,13 +25,14 @@ def index(request, user_id):
         post.save()
         postform.save()
     postform = PostForm()
-    posts = Post.objects.all()
+    posts = Post.objects.filter(author=request.user)
     return render(request, 'first/index.html', {'posts': posts, 'postform': postform})
 
 
 def kek(request):
     username = request.user.username
     return HttpResponse(username)
+
 
 # Общий фид
 def feed(request):
@@ -42,14 +44,14 @@ def feed(request):
 class Signup(FormView):
     form_class = UserCreationForm
     success_url = "../feed/"
-    template_name = "first/signup.html"
+    template_name = "first/.html"
 
     def form_valid(self, form):
         form.save()
         return super(Signup, self).form_valid(form)
 
 
-# Логинка
+# Логинка, надо обработать index
 class Login(FormView):
     form_class = AuthenticationForm
     template_name = "first/login.html"
