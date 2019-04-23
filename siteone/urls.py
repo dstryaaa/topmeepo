@@ -12,7 +12,7 @@ urlpatterns = [
     path('feed/', views.feed),
     path('login/', views.Login.as_view()),
     path('logout/', views.Logout.as_view()),
-    path('test/', views.kek)
+    path('index/', views.kek)
 ]
 
 if settings.DEBUG:
