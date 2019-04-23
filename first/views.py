@@ -24,7 +24,7 @@ def index(request, user_id):
         post.save()
         postform.save()
     postform = PostForm()
-    posts = Post.objects.all()
+    posts = Post.objects.filter(author=request.user)
     return render(request, 'first/index.html', {'posts': posts, 'postform': postform})
 
 
@@ -49,7 +49,7 @@ class Signup(FormView):
         return super(Signup, self).form_valid(form)
 
 
-# Логинка
+# Логинка, надо обработать index
 class Login(FormView):
     form_class = AuthenticationForm
     template_name = "first/login.html"
