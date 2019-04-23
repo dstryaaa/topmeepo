@@ -1,0 +1,55 @@
+body {
+  font-family: 'Istok Web', sans-serif;
+  background-color: #eceff1;
+}
+
+.col-6 {
+    background-color: white;
+    border: 2px solid #b2ebf2;
+    border-radius: 7px;
+    height: 200px;
+}
+
+#logincont {
+    padding-top: 20px;
+}
+
+#logbut:hover {
+    background-color: #b2ebf2;
+}
+
+form a:hover {
+    text-decoration: none;
+}
+
+#butdiv {
+    margin-top: 25px;
+}
+
+p {
+    padding-top: 10px;
+}
+
+form {
+    padding-top: 25px;
+}
+
+p {
+    margin: auto;
+}
+
+#id_username {
+    float: right;
+    margin-right: 10px;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    padding-left: 3px;
+}
+
+#id_password {
+    float: right;
+    margin-right: 10px;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    padding-left: 3px;
+}

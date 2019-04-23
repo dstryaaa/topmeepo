@@ -4,7 +4,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset="utf-8">
     <title>Пишем посты</title>
-    <link href="https://fonts.googleapis.com/css?family=Playfair+Display" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Istok+Web" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="{% static 'css/style.css'%}" type="text/css" media="screen">
   </head>
@@ -65,7 +65,7 @@
 
             <div class="col s8"  id="postcol">
               <div id="post">
-                  <p id="postauthor">{{ i.author }}</p>
+                <p id="postauthor">{{ i.author }}</p>
                 <p id="posttitle">{{ i.title }}</p>
                 <p id="postcontent">{{ i.content }}</p>
                 <p id="postdatetime">{{ i.published|date:"d.m.Y H:i:s" }}</p>

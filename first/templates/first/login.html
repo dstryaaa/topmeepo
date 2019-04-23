@@ -1,13 +1,33 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
   <head>
     <title>Логин</title>
+    <link href="https://fonts.googleapis.com/css?family=Istok+Web" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/login.css'%}" type="text/css" media="screen">
   </head>
   <body>
-    <form action="" method="post">
-      {% csrf_token %}
-      {{ form.as_p }}
-      <button type="submit"><a href="../index/">Зайти на сайт</a></button>
-    </form>
+
+  <div class="container" id="logincont">
+      <div class="row">
+        <div class="col">
+        </div>
+        <div class="col-6">
+          <form action="" method="post">
+            {% csrf_token %}
+            <div id="logp">{{ form.as_p }}</div>
+            <div id="butdiv">
+              <button type="submit" class="btn btn-outline-primary" id="logbut"><a href="../index/">Log in</a></button>
+            </div>
+          </form>
+
+        </div>
+        <div class="col">
+        </div>
+      </div>
+  </div>
+
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   </body>
 </html>
