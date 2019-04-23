@@ -47,9 +47,9 @@ p {
 }
 
 #id_password {
-    float: right;
-    margin-right: 10px;
     border: 1px solid #ced4da;
     border-radius: .25rem;
+    float: right;
+    margin-right: 10px;
     padding-left: 3px;
 }
