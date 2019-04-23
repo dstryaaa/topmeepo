@@ -1,5 +1,5 @@
 #from django.shortcuts import render
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect,HttpResponse
 #from django.template import loader
 from django.shortcuts import render
 from .forms import PostForm
@@ -8,21 +8,29 @@ from django.views.generic.edit import FormView
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login, logout
 from django.views.generic.base import View
-from django.contrib.auth.decorators import login_required
+from django.contrib import admin
 
 # Аккаунт пользователя
-@login_required(login_url='../login/')
 # Интересный факт: если сюда не поставить user_id, то выдаст ошибку
+
+
 def index(request, user_id):
     if request.user.id != user_id:
         return HttpResponseRedirect('../login/')
     if request.method == 'POST':
         postform = PostForm(request.POST)
+        post = postform.save(commit=False)
+        post.author = request.user
+        post.save()
         postform.save()
     postform = PostForm()
     posts = Post.objects.all()
     return render(request, 'first/index.html', {'posts': posts, 'postform': postform})
 
+
+def kek(request):
+    username = request.user.username
+    return HttpResponse(username)
 
 # Общий фид
 def feed(request):
