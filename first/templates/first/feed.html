@@ -29,10 +29,10 @@
 
       <div class="row" id="feedposts">
 
-        <div class="col s2">
+        <div class="col s3">
         </div>
 
-        <div class="col s8">
+        <div class="col s6">
             {% for i in posts %}
               <div class="row">
                 <div class="col s2">
@@ -41,7 +41,7 @@
                 <div class="col s8"  id="postcol">
                   <div id="post">
                     <p id="postauthor">{{ i.author }}</p>
-                    <p id="posttitle">{{ i.title }}</p>
+                    <!--<p id="posttitle">{{ i.title }}</p>-->
                     <p id="postcontent">{{ i.content }}</p>
                     <p id="postdatetime">{{ i.published|date:"d.m.Y H:i:s" }}</p>
                   </div>
@@ -54,7 +54,7 @@
             {% endfor %}
             </div>
 
-        <div class="col s2">
+        <div class="col s3">
         </div>
 
       </div>

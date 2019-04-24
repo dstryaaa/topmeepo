@@ -2,8 +2,8 @@
 from django.http import HttpResponseRedirect,HttpResponse
 #from django.template import loader
 from django.shortcuts import render
-from .forms import PostForm
-from .models import Post
+from .forms import PostForm, BioForm
+from .models import Post, Bio
 from django.views.generic.edit import FormView
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login, logout
@@ -17,16 +17,24 @@ from django.contrib import admin
 def index(request, user_id):
     if request.user.id != user_id:
         posts = Post.objects.filter(author=user_id)
-        return render(request, 'first/feed.html', {'posts': posts})
+        bios = Bio.objexts.filter(author=user_id)
+        return render(request, 'first/feed.html', {'posts': posts, 'bios': bios})
     if request.method == 'POST':
         postform = PostForm(request.POST)
         post = postform.save(commit=False)
         post.author = request.user
         post.save()
         postform.save()
+        bioform = BioForm(request.POST)
+        bio = bioform.save(commit=False)
+        bio.author = request.user
+        bio.save()
+        bioform.save()
+    bioform = BioForm()
     postform = PostForm()
+    bios = Bio.objects.filter(author=request.user)
     posts = Post.objects.filter(author=request.user)
-    return render(request, 'first/index.html', {'posts': posts, 'postform': postform})
+    return render(request, 'first/index.html', {'posts': posts, 'postform': postform, 'bios': bios, 'bioform': bioform}, )
 
 
 def kek(request):
