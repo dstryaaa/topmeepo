@@ -50,7 +50,7 @@ class Vote(View):
         obj = self.model.objects.get(pk=pk)
         # GenericForeignKey не поддерживает метод get_or_create
         try:
-            # Берем инфу об объекте
+            # Берем инфу об объекте, причем content_type берет хитро по get_for_model, читай доки
             likedislike = LikeDislike.objects.get(content_type=ContentType.objects.get_for_model(obj),
                                                   object_id=obj.id,
                                                   user=request.user)
