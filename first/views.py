@@ -21,7 +21,7 @@ from django.contrib.contenttypes.models import ContentType
 def index(request, user_id):
     if request.user.id != user_id:
         posts = Post.objects.filter(author=user_id)
-        bios = Bio.objexts.filter(author=user_id)
+        bios = Bio.objects.filter(author=user_id)
         return render(request, 'first/feed.html', {'posts': posts, 'bios': bios})
     if request.method == 'POST':
         postform = PostForm(request.POST)
