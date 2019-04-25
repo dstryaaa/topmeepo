@@ -1,9 +1,8 @@
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 from first import views
-
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -12,7 +11,8 @@ urlpatterns = [
     path('feed/', views.feed),
     path('login/', views.Login.as_view()),
     path('logout/', views.Logout.as_view()),
-    path('index/', views.kek)
+    path('index/', views.kek),
+
 ]
 
 if settings.DEBUG:

@@ -1,40 +1,17 @@
 from django.db import models
-from django.db.models import Sum
+from django.conf import settings
 from django.contrib.auth.models import User
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes.fields import GenericForeignKey, GenericRelation
 
 
-class LikeDislikeManager(models.Manager):
-    use_for_related_fields = True
-
-    def likes(self):
-        # Забираем queryset с записями больше 0
-        return self.get_queryset().filter(vote__gt=0)
-
-    def dislikes(self):
-        # Забираем queryset с записями меньше 0
-        return self.get_queryset().filter(vote__lt=0)
-
-    def sum_rating(self):
-        # Забираем суммарный рейтинг
-        return self.get_queryset().aggregate(Sum('vote')).get('vote__sum') or 0
-
-
-class LikeDislike(models.Model):
-    # Лайки и дислайки плюсуются и минусуются на один
-    like = 1
-    dislike = -1
-    # Какие мнения есть
-    votes = ((dislike, 'Не нравится'), (like, 'Нравится'))
-    vote = models.SmallIntegerField(verbose_name=("Мнение"), choices=votes)
-    # Какой юзер делает
-    user = models.ForeignKey(User, verbose_name=("Юзер"), on_delete=models.CASCADE)
+class Like(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL,
+                             related_name='likes',
+                             on_delete=models.CASCADE)
     content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
     object_id = models.PositiveIntegerField()
-    # Поле для связи
-    content_object = GenericForeignKey()
-    objects = LikeDislikeManager()
+    content_object = GenericForeignKey('content_type', 'object_id')
 
 
 class Post(models.Model):
@@ -42,7 +19,14 @@ class Post(models.Model):
     content = models.TextField('content', null=True, blank=True)
     published = models.DateTimeField('published', auto_now_add=True, db_index=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
-    votes = GenericRelation(LikeDislike, related_query_name='posts')
+    likes = GenericRelation(Like)
+
+    def __str__(self):
+        return self.content
+
+    @property
+    def total_likes(self):
+        return self.likes.count()
 
     class Meta:
         verbose_name = 'Пост'
