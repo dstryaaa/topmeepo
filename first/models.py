@@ -17,7 +17,7 @@ class Post(models.Model):
 
 class Likes(models.Model):
     post_id = models.CharField('vote_id', max_length=200)
-    like_count = models.PositiveIntegerField('like_id')
+    like_count = models.PositiveIntegerField('like_id', default=0)
     author = models.CharField('author_id', max_length=200)
 
 

@@ -44,13 +44,21 @@ def kek(request):
 def add_vote(request, object_id):
     id = object_id
     author = request.user.id
-    like = Likes.objects.get(pk=object_id)
-    if like.author != author:
+    try:
+        like = Likes.objects.get(pk=object_id)
+        if like.author != author:
+            like.post_id = id
+            like.like_count += 1
+            like.author = author
+            like.save()
+            return HttpResponseRedirect('../../feed/')
+    except Likes.DoesNotExist:
+        Likes.objects.create(pk=object_id)
+        like = Likes.objects.get(pk=object_id)
         like.post_id = id
         like.like_count += 1
         like.author = author
         like.save()
-        return HttpResponseRedirect('../../feed/')
     return HttpResponse('Вы голосовали')
 
 
