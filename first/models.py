@@ -1,6 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.contrib.contenttypes.fields import GenericRelation
 import secretballot
 
 
@@ -14,6 +13,12 @@ class Post(models.Model):
         verbose_name = 'Пост'
         verbose_name_plural = 'Посты'
         ordering = ['-published']
+
+
+class Likes(models.Model):
+    post_id = models.CharField('vote_id', max_length=200)
+    like_count = models.PositiveIntegerField('like_id')
+    author = models.CharField('author_id', max_length=200)
 
 
 class Bio(models.Model):

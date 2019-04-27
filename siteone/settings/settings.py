@@ -52,7 +52,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'secretballot.middleware.SecretBallotIpMiddleware'
+    'secretballot.middleware.SecretBallotIpUseragentMiddleware'
 ]
 
 ROOT_URLCONF = 'siteone.urls'

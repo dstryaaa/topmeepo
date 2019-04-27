@@ -4,7 +4,7 @@ import json
 #from django.template import loader
 from django.shortcuts import render
 from .forms import PostForm, BioForm
-from .models import Post, Bio
+from .models import Post, Bio, Likes
 from django.views.generic.edit import FormView
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login, logout
@@ -41,9 +41,18 @@ def kek(request):
     return HttpResponse('НЕПРАВИЛЬНО')
 
 
-def add_vote(request, obj_id):
-    vote(request, vote=+1, content_type=Post, object_id=obj_id)
-    return HttpResponseRedirect('../../feed/')
+def add_vote(request, object_id):
+    id = object_id
+    author = request.user.id
+    like = Likes.objects.get(pk=object_id)
+    if like.author != author:
+        like.post_id = id
+        like.like_count += 1
+        like.author = author
+        like.save()
+        return HttpResponseRedirect('../../feed/')
+    return HttpResponse('Вы голосовали')
+
 
 
 # Общий фид
