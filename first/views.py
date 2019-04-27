@@ -9,8 +9,7 @@ from django.views.generic.edit import FormView
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login, logout
 from django.views import View
-
-
+from secretballot.views import vote
 # Аккаунт пользователя
 # Интересный факт: если сюда не поставить user_id, то выдаст ошибку
 
@@ -40,6 +39,11 @@ def index(request, user_id):
 
 def kek(request):
     return HttpResponse('НЕПРАВИЛЬНО')
+
+
+def add_vote(request, obj_id):
+    vote(request, vote=+1, content_type=Post, object_id=obj_id)
+    return HttpResponseRedirect('../../feed/')
 
 
 # Общий фид
