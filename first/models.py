@@ -1,6 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import User
-import secretballot
 
 
 class Post(models.Model):
@@ -16,9 +15,9 @@ class Post(models.Model):
 
 
 class Likes(models.Model):
-    post_id = models.CharField('vote_id', max_length=200)
-    like_count = models.PositiveIntegerField('like_id', default=0)
-    author = models.CharField('author_id', max_length=200)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    "в авторе не берется то, что нужно"
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
 
 
 class Bio(models.Model):

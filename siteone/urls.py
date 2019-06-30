@@ -12,7 +12,7 @@ urlpatterns = [
     path('login/', views.Login.as_view()),
     path('logout/', views.Logout.as_view()),
     path('index/', views.kek),
-    path('like/<int:object_id>/', views.add_vote),
+    path('like/<int:post_id>/', views.like),
 ]
 
 if settings.DEBUG:
